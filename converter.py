@@ -4,20 +4,22 @@ from moviepy.editor import *
 
 
 class Extractor:
-    def __init__(self,inputfile):
+    def __init__(self,inputfile, output_file_name,output_folder):
         self.inputfile= inputfile
+        self.output_folder = output_folder
+        self.output_file_name = output_file_name
         self.output_file_name= self.get_output_file_name()
-        pass
+        print(self.output_file_name)
+
     def test(self):
         print("stuff")
     def get_output_file_name(self):
         return "name"
     def moviepy_way(self):
-        input_file = "/home/martin/Music/video/(6) Jidenna - Bambi - YouTube.mkv"
-        output_file = "/home/martin/Music/sample.mp3"
-        video_clip = VideoFileClip(self.inputfile)
-        audio_clip = video_clip.audio
-        audio_clip.write_audiofile(output_file)
+        pass
+        # video_clip = VideoFileClip(self.inputfile)
+        # audio_clip = video_clip.audio
+        # audio_clip.write_audiofile(f"{self.output_folder}/{self.output_file_name}.mp3")
     def ffmpeg_way(self):
         input_file = "/home/martin/Music/video/it'll be ok.mkv"
         output_file = "sample.mp3"

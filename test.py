@@ -1,21 +1,22 @@
-import curses
-import datetime
+from pathlib import Path
+import platform
+import os
+input_file = "/home/martin/Music/video/(6) Jidenna - Bambi - YouTube.mkv"
 
-def main(stdscr):
-    # Turn off cursor blinking
-    curses.curs_set(0)
+class Saving_the_file:
+    def __init__(self, input_file):
+        self.input_file=input_file
+        self.home = str(Path.home())
+        self.create_destination_folder()
 
-    # Clear screen and draw border
-    stdscr.clear()
-    stdscr.border(0)
 
-    # Display time and date
-    while True:
-        now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        stdscr.addstr(2, 2, "Current time: " + now)
+    def save(self):
+        output_array=self.input_file.split("/")
+        filename=output_array[len(output_array)-1].split(".")[0]
+        destination = f"{self.home}/Music/Em Audio extractor"
+        return [filename,destination]
 
-        # Refresh the screen every second
-        stdscr.refresh()
-        curses.napms(1000)
+    def create_destination_folder(self):
+        if not os.path.exists(f"{self.home}/Music/Em Audio extractor"):
+            os.makedirs(f"{self.home}/Music/Em Audio extractor")
 
-curses.wrapper(main)

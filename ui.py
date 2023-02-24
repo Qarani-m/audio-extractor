@@ -1,6 +1,7 @@
 import customtkinter
 import subprocess
 from converter import Extractor
+from test import Saving_the_file
 import time
 import threading
 
@@ -30,7 +31,10 @@ class App(customtkinter.CTk):
 
     def select_one(self):
         file_name =customtkinter.filedialog.askopenfilename()
-        extractor = Extractor(file_name)
+        file=Saving_the_file(file_name).save()
+        print(file)
+
+        extractor = Extractor(file_name,file[0],file[1])
         t2 = threading.Thread(target=extractor.moviepy_way)
         t2.start()
 
