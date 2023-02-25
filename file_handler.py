@@ -1,6 +1,7 @@
 from pathlib import Path
 import platform
 import os
+from extractor import Extractor
 
 class Saving_file:
     def __init__(self, input_file):
@@ -16,3 +17,8 @@ class Saving_file:
         if not os.path.exists(f"{self.home}/Music/Em Audio extractor"):
             os.makedirs(f"{self.home}/Music/Em Audio extractor")
 
+    def handle_files(file):
+        file_name =file
+        file=Saving_file(file_name).save()
+        extractor = Extractor(file_name,file[0],file[1])
+        extractor.moviepy_way()
