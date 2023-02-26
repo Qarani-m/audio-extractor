@@ -1,15 +1,15 @@
 import customtkinter
-import subprocess
-from extractor import Extractor
 from file_handler import Saving_file
-import time
 import threading
+from tkVideoPlayer import TkinterVideo
 
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         self.geometry("900x700")
         self.title("Em Audio extractor")
+        self.file_name=""
+        # t1 = 
         self.resizable(False, False)
         self.add_buttons()
     def add_buttons(self):
@@ -21,10 +21,24 @@ class App(customtkinter.CTk):
         self.button.place(x=900-170,y=10, )
     def button_(self,height,width,command, text,fg_color):
         return customtkinter.CTkButton(self,command=command,fg_color=fg_color,height=height, width=width,text=text,)
+# play the video
+    def video_player(self):
+        videoplayer = TkinterVideo(master=self, scaled=True,keep_aspect=False)
+        videoplayer.set_size((100,100))
+        videoplayer
+        videoplayer.load(self.file_name)
+        videoplayer.place(x=100,y=200)
+        videoplayer.play() 
     def select_one(self):
         files=[]
-        file_name =customtkinter.filedialog.askopenfilename()
-        Saving_file.handle_files(file_name)
+        self.file_name =customtkinter.filedialog.askopenfilename()
+        t1 = threading.Thread(target=self.video_player)
+        t1.start()
+        t1 = threading.Thread(target=self.video_player)
+        t1.start()
+        t2= threading.Thread(target =Saving_file.handle_files,args=(self.file_name,))
+        t2.start()
+        # Saving_file.handle_files(self.file_name)
 
     def select_multiple(self):
         files=[]

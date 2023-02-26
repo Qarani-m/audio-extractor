@@ -1,5 +1,4 @@
 from pathlib import Path
-import platform
 import os
 from extractor import Extractor
 

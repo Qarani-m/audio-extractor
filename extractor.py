@@ -20,8 +20,12 @@ class Extractor:
             audio_clip = video_clip.audio
             audio_clip.write_audiofile(f"{self.output_folder}/{self.output_file_name}")
         except Exception as e:
+            print(e)
             self.ffmpeg_way()
     def ffmpeg_way(self):
-        output_file = f"{self.output_folder}/{self.output_file_name}"
-        subprocess.run(["ffmpeg", "-i", self.input_file, "-vn", "-acodec", "libmp3lame", "-ab", "128k", "-ar", "44100", output_file])
-
+        try:
+            output_file = f"{self.output_folder}/{self.output_file_name}"
+            subprocess.run(["ffmpeg", "-i", self.inputfile, "-vn", "-acodec", "libmp3lame", "-ab", "128k", "-ar", "44100", output_file])
+        except Exception as e:
+            print(e)
+            self.moviepy_way()
